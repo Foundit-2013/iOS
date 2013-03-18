@@ -281,6 +281,7 @@
     // Do stuff to image.
     _imageView.hidden = NO;
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
+    _imageView.alpha = 1.0f;
     _imageView.image = self.image;
 }
 
