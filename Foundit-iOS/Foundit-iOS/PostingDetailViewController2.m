@@ -9,6 +9,7 @@
 #import "PostingDetailViewController2.h"
 #import "LargeImageViewController.h"
 #import "HUD.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface PostingDetailViewController2 ()
 
@@ -66,12 +67,29 @@
     _detailCreatedAtLabel.text = [NSString stringWithFormat:@"Date Posted: %@", _json[2]];
     _detailDescriptionTextView.text = _json[3];
     _detailImageView.image = image;
+    
+//    [_detailImageView.layer setBorderColor: [[UIColor blackColor] CGColor]];
+//    [_detailImageView.layer setBorderWidth: 2.0];
+    
+    CGRect frame;
+    frame = _detailDescriptionTextView.frame;
+    frame.size.height = [_detailDescriptionTextView contentSize].height;
+    _detailDescriptionTextView.frame = frame;
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section == 0 && indexPath.row == 3) {
+        return _detailDescriptionTextView.frame.size.height + 30.0;
+    }
+    // "Else"
+    return 45;
 }
 
 //#pragma mark - Table view data source

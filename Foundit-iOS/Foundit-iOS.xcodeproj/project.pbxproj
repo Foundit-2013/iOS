@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		75395454B7E44A67ADBFF275 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F281B9ECA19D42DAAC83C739 /* libPods.a */; };
+		AE015B4716F6EBA7000D5CB5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE015B4616F6EBA7000D5CB5 /* SystemConfiguration.framework */; };
 		AE03F9CE16E8515200091FDB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AEE23BEA16E79CB800090E5A /* Default@2x.png */; };
 		AE33B65B16E83867006DABA8 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = AE33B65916E83867006DABA8 /* Icon-72.png */; };
 		AE33B65C16E83867006DABA8 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AE33B65A16E83867006DABA8 /* Icon-72@2x.png */; };
@@ -86,6 +86,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AE015B4616F6EBA7000D5CB5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		AE33B65916E83867006DABA8 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		AE33B65A16E83867006DABA8 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		AE33B65D16E83945006DABA8 /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
@@ -182,8 +183,6 @@
 		AEE7989116F43331007475F9 /* SecondViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController2.m; sourceTree = "<group>"; };
 		AEE7989316F43B3D007475F9 /* missing_image_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missing_image_large.png; sourceTree = "<group>"; };
 		AEE7989516F43BBF007475F9 /* missing_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missing_image.png; sourceTree = "<group>"; };
-		E480B55335C14BA6B475D678 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		F281B9ECA19D42DAAC83C739 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,10 +190,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE015B4716F6EBA7000D5CB5 /* SystemConfiguration.framework in Frameworks */,
 				AEE23BD716E79CB800090E5A /* UIKit.framework in Frameworks */,
 				AEE23BD916E79CB800090E5A /* Foundation.framework in Frameworks */,
 				AEE23BDB16E79CB800090E5A /* CoreGraphics.framework in Frameworks */,
-				75395454B7E44A67ADBFF275 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,7 +317,6 @@
 				AEE23C0E16E79CB800090E5A /* Foundit-iOSTests */,
 				AEE23BD516E79CB800090E5A /* Frameworks */,
 				AEE23BD416E79CB800090E5A /* Products */,
-				E480B55335C14BA6B475D678 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -334,11 +332,11 @@
 		AEE23BD516E79CB800090E5A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AE015B4616F6EBA7000D5CB5 /* SystemConfiguration.framework */,
 				AEE23BD616E79CB800090E5A /* UIKit.framework */,
 				AEE23BD816E79CB800090E5A /* Foundation.framework */,
 				AEE23BDA16E79CB800090E5A /* CoreGraphics.framework */,
 				AEE23C0816E79CB800090E5A /* SenTestingKit.framework */,
-				F281B9ECA19D42DAAC83C739 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -430,7 +428,6 @@
 				AEE23BD016E79CB800090E5A /* Frameworks */,
 				AEE23BD116E79CB800090E5A /* Resources */,
 				50524F424C454D533F /* ShellScript */,
-				322F69A511854A339543EA3C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -536,20 +533,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		322F69A511854A339543EA3C /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
-		};
 		50524F424C454D533F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -729,7 +712,6 @@
 		};
 		AEE23C1A16E79CB800090E5A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E480B55335C14BA6B475D678 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Foundit-iOS/Foundit-iOS-Prefix.pch";
@@ -743,7 +725,6 @@
 		};
 		AEE23C1B16E79CB800090E5A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E480B55335C14BA6B475D678 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Foundit-iOS/Foundit-iOS-Prefix.pch";

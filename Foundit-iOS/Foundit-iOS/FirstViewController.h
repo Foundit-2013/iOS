@@ -11,6 +11,8 @@
 @interface FirstViewController : UIViewController {
     bool foundWasClicked;
     bool lostWasClicked;
+    
+    IBOutlet UIView *blackView;
 }
 
 @end

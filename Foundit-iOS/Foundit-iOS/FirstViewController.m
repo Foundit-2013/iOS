@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 #import "PostingsViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface FirstViewController ()
 
@@ -19,6 +20,19 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+//    [UIView animateWithDuration:3
+//                          delay:0
+//                        options:UIViewAnimationOptionCurveEaseOut
+//                     animations:^{
+//                         blackView.layer.opacity = 100;
+//                     }
+//                     completion:^(BOOL finished) {
+//                         // This line prevents the flash
+//                         blackView.layer.opacity = 0;
+//                         [blackView removeFromSuperview];
+//                     }];
+    
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"/UIBackground.png"]];
 }
 
