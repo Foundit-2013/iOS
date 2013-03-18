@@ -1,0 +1,301 @@
+//
+//  SecondViewController.m
+//  Foundit-iOS
+//
+//  Created by Shaun Maharaj on 2013-03-06.
+//  Copyright (c) 2013 Shaun Maharaj. All rights reserved.
+//
+
+#import "SecondViewController.h"
+#import "PostingDetailViewController.h"
+#import "JSONModelLib.h"
+#import "HUD.h"
+#import "SystemConfiguration/SystemConfiguration.h"
+
+@interface SecondViewController ()
+
+@end
+
+@implementation SecondViewController
+
+- (BOOL) isConnectionAvailable
+{
+	SCNetworkReachabilityFlags flags;
+    BOOL receivedFlags;
+    
+    SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithName(CFAllocatorGetDefault(), [@"google.com" UTF8String]);
+    receivedFlags = SCNetworkReachabilityGetFlags(reachability, &flags);
+    CFRelease(reachability);
+    
+    if (!receivedFlags || (flags == 0) )
+    {
+        return FALSE;
+    } else {
+		return TRUE;
+	}
+}
+
+- (void)viewDidLoad
+{
+    [HUD showUIBlockingIndicatorWithText:@"Loading..."];
+    
+    if ([self isConnectionAvailable] == TRUE){
+        _myTableView.dataSource = self;
+        [super viewDidLoad];
+        
+        self.myTableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"/UIBackground.png"]];
+        
+        _postingsUrl = [NSURL URLWithString:@"http://foundit.andrewl.ca/postings_show_found.json"];
+        [self fetchJSONfromServer:_postingsUrl];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect. Please check your internet Connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    [HUD hideUIBlockingIndicator];
+}
+
+-(void)fetchJSONfromServer:(NSURL *)url {
+    NSData *jsonData=[NSData dataWithContentsOfURL:_postingsUrl];
+    NSError *e = nil;
+    self.json = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&e];
+    
+    _images_downloaded = [[NSMutableArray alloc] init];
+    for (int i=0; i< self.json.count; i++) {
+        self.postings = [self.json objectAtIndex: i];
+        
+        UIImage *image;
+        if (![[self.postings objectForKey:@"photo_url_thumb"] isEqualToString: @"/photos/thumb/missing.png"]) {
+            NSString *myUrl = [self.postings objectForKey:@"photo_url_thumb"];
+            NSString * strRR = [NSString stringWithFormat:@"http://foundit.andrewl.ca/%@", myUrl];
+            NSURL *url = [NSURL URLWithString:strRR];
+            image = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+        }
+        else {
+            image = [UIImage imageNamed:@"/missing_image.png"];
+        }
+        [_images_downloaded addObject: image];
+    }
+    [_myTableView reloadData];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"/UIBackground.png"]];
+    
+//    UIRefreshControl* refreshControl = [[UIRefreshControl alloc] init];
+//    [refreshControl addTarget:self action:@selector(segmentValueChanged:) forControlEvents:UIControlEventValueChanged];
+//    [_myTableView reloadData];
+    
+//    _postingsUrl = [NSURL URLWithString:@"http://foundit.andrewl.ca/postings_show_found.json"];
+//    NSData *jsonData=[NSData dataWithContentsOfURL:_postingsUrl];
+//    NSError *e = nil;
+//    self.json = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&e];
+//    
+//    _images_downloaded = [[NSMutableArray alloc] init];
+//    for (int i=0; i< self.json.count; i++) {
+//        self.postings = [self.json objectAtIndex: i];
+//        
+//        NSString *myUrl = [self.postings objectForKey:@"photo_url_thumb"];
+//        NSString * strRR = [NSString stringWithFormat:@"http://foundit.andrewl.ca/%@", myUrl];
+//        NSURL *url = [NSURL URLWithString:strRR];
+//        UIImage *image = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+//        [_images_downloaded addObject: image];
+//    }
+//    NSLog(@"JSON : %d", self.json.count);
+//    [_myTableView reloadData];
+//    
+//    [HUD hideUIBlockingIndicator];
+
+}
+
+- (UIViewController *)viewControllerForSegmentIndex:(NSInteger)index {
+    UIViewController *vc;
+    switch (index) {
+        case 0:
+            break;
+        case 1:
+            break;
+    }
+    return vc;
+}
+
+//RootViewController.m
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    return [[[[json valueForKey:@"id"] objectAtIndex:section] valueForKey:@"name"] count];
+//    NSLog(@"JSON : %d", self.json.count);
+    return self.json.count;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    return 1;
+}
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *CellIdentifier = @"Cell";
+    //here you check for PreCreated cell.
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+
+    self.postings = [self.json objectAtIndex: indexPath.row];
+    
+//    NSString *myUrl = [self.postings objectForKey:@"photo_url_thumb"];
+//    NSString * strRR = [NSString stringWithFormat:@"http://foundit.andrewl.ca/%@", myUrl];
+//    NSURL *url = [NSURL URLWithString:strRR];
+//    UIImage *image = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+
+    CGSize itemSize = CGSizeMake(60, 60);
+    UIGraphicsBeginImageContext(itemSize);
+    CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
+    
+    @try {
+        [[self.images_downloaded objectAtIndex: indexPath.row] drawInRect:imageRect];
+        cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+    }
+    @catch (NSException *ex){
+       cell.imageView.image = [UIImage imageNamed:@"/missing_image.png"]; 
+    }
+//    if ([[self.images_downloaded objectAtIndex: indexPath.row] isKindOfClass:[NSNull class]]){
+//        cell.imageView.image = [UIImage imageNamed:@"/icon.png"];
+//    }
+//    else {
+//        [[self.images_downloaded objectAtIndex: indexPath.row] drawInRect:imageRect];
+//        cell.imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+//    }
+    UIGraphicsEndImageContext();
+    
+//    cell.imageView.image = [self.images_downloaded objectAtIndex: indexPath.row];
+    cell.textLabel.text = [self.postings objectForKey:@"name"];
+    cell.detailTextLabel.text = [self.postings objectForKey:@"created_at"];
+    
+    return cell;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    _indexPathSend = indexPath.row;
+    return indexPath;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (IBAction)segmentValueChanged:(id)sender {
+    
+    if ([self isConnectionAvailable] == TRUE){    
+    UISegmentedControl *seg = sender;
+    if (seg.selectedSegmentIndex == 0) {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.5];
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:_myTableView cache:YES];
+        [UIView commitAnimations];
+        
+        _postingsUrl = [NSURL URLWithString:@"http://foundit.andrewl.ca/postings_show_found.json"];
+        
+        [self fetchJSONfromServer:_postingsUrl];
+//        
+//        NSData *jsonData=[NSData dataWithContentsOfURL:_postingsUrl];
+//        NSError *e = nil;
+//        self.json = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&e];
+//        
+//        _images_downloaded = [[NSMutableArray alloc] init];
+//        for (int i=0; i< self.json.count; i++) {
+//            self.postings = [self.json objectAtIndex: i];
+//            
+//            UIImage *image;
+//            if (![[self.postings objectForKey:@"photo_url_thumb"] isEqualToString: @"/photos/thumb/missing.png"]) {
+//                NSString *myUrl = [self.postings objectForKey:@"photo_url_thumb"];
+//                NSString * strRR = [NSString stringWithFormat:@"http://foundit.andrewl.ca/%@", myUrl];
+//                NSURL *url = [NSURL URLWithString:strRR];
+//                image = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+//            }
+//            else {
+//                image = [UIImage imageNamed:@"/missing_image.png"];
+//            }
+//            [_images_downloaded addObject: image];
+//        }
+//        [_myTableView reloadData];
+//        
+//        [HUD hideUIBlockingIndicator];
+//        
+//        [_myTableView reloadData];
+    }
+    else if (seg.selectedSegmentIndex == 1) {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.5];
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:_myTableView cache:YES];
+        [UIView commitAnimations];
+        
+        _postingsUrl = [NSURL URLWithString:@"http://foundit.andrewl.ca/postings_show_lost.json"];
+        [self fetchJSONfromServer:_postingsUrl];
+        
+//        NSData *jsonData=[NSData dataWithContentsOfURL:_postingsUrl];
+//        NSError *e = nil;
+//        self.json = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&e];
+//        
+//        _images_downloaded = [[NSMutableArray alloc] init];
+//        for (int i=0; i< self.json.count; i++) {
+//            self.postings = [self.json objectAtIndex: i];
+//            
+//            UIImage *image;
+//            if (![[self.postings objectForKey:@"photo_url_thumb"] isEqualToString: @"/photos/thumb/missing.png"]) {
+//                NSString *myUrl = [self.postings objectForKey:@"photo_url_thumb"];
+//                NSString * strRR = [NSString stringWithFormat:@"http://foundit.andrewl.ca/%@", myUrl];
+//                NSURL *url = [NSURL URLWithString:strRR];
+//                image = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+//            }
+//            else {
+//                image = [UIImage imageNamed:@"/missing_image.png"];
+//            }
+//            [_images_downloaded addObject: image];
+//        }
+//        [_myTableView reloadData];
+//        
+//        [HUD hideUIBlockingIndicator];
+//        
+//        [_myTableView reloadData];
+    }
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect. Please check your internet Connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    if ([self isConnectionAvailable] == TRUE){
+        return YES;
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect. Please check your internet Connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        return NO;
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"ShowPostingDetailsFound"]) {
+        self.postings = [self.json objectAtIndex: _indexPathSend];
+        NSArray *json = @[[self.postings objectForKey:@"name"],[self.postings objectForKey:@"posting_type"],[self.postings objectForKey:@"created_at"],[self.postings objectForKey:@"description"],[self.postings objectForKey:@"photo_url_large"]];
+        PostingDetailViewController *vc = [segue destinationViewController];
+        vc.json = json;
+    }
+    
+}
+
+@end

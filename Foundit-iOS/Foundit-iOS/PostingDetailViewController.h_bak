@@ -1,0 +1,23 @@
+//
+//  PostingDetailViewController.h
+//  Foundit-iOS
+//
+//  Created by Shaun Maharaj on 2013-03-07.
+//  Copyright (c) 2013 Shaun Maharaj. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface PostingDetailViewController : UIViewController <UISplitViewControllerDelegate>
+
+//@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) IBOutlet UILabel *detailNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *detailPostingTypeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *detailCreatedAtLabel;
+@property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *detailImageView;
+@property (strong, nonatomic) NSString *myUrl;
+
+@property (nonatomic, strong) NSArray *json;
+
+@end

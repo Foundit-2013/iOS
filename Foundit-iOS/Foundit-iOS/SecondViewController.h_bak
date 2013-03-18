@@ -1,0 +1,37 @@
+//
+//  SecondViewController.h
+//  Foundit-iOS
+//
+//  Created by Shaun Maharaj on 2013-03-06.
+//  Copyright (c) 2013 Shaun Maharaj. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class PostingDetailViewController;
+
+@interface SecondViewController : UIViewController<UITableViewDelegate, UITableViewDataSource> {
+
+IBOutlet UITableView *myTableView;
+
+}
+
+- (IBAction)segmentSwitch:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UITableView *postingsFound;
+@property (strong, nonatomic) IBOutlet UITableView *postingsLost;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+- (IBAction)segmentValueChanged:(id)sender;
+
+@property (nonatomic, strong) NSArray* json;
+@property (nonatomic, retain) NSMutableArray* images_downloaded;
+@property (nonatomic, strong) NSDictionary* postings;
+@property (nonatomic, strong) NSURL *postingsUrl;
+@property (nonatomic) NSInteger* indexPathSend;
+
+@property (nonatomic, retain) IBOutlet UITableView *myTableView;
+
+@property (strong, nonatomic) PostingDetailViewController *postingDetailViewController;
+- (BOOL)connected ;
+
+@end
