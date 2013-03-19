@@ -327,7 +327,7 @@ Parnit Pooni</string>
             </objects>
             <point key="canvasLocation" x="702" y="-454"/>
         </scene>
-        <!--Posting Detail View Controller2 - Posting Details-->
+        <!--Posting Detail View Controller2 - Post Details-->
         <scene sceneID="IXv-Yf-3ss">
             <objects>
                 <tableViewController id="tWp-Pq-9Df" customClass="PostingDetailViewController2" sceneMemberID="viewController">
@@ -439,7 +439,7 @@ Parnit Pooni</string>
                             <outlet property="delegate" destination="tWp-Pq-9Df" id="RHI-Ue-6wD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Posting Details" id="sQJ-c7-HyG"/>
+                    <navigationItem key="navigationItem" title="Post Details" id="sQJ-c7-HyG"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="detailCreatedAtLabel" destination="6MV-fh-nlh" id="9Hl-sW-CP7"/>
@@ -544,6 +544,71 @@ Parnit Pooni</string>
         <image name="home.png" width="30" height="30"/>
         <image name="products.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="FirstViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="foundButtonAction:"/>
+                <relationship kind="action" name="lostButtonAction:"/>
+                <relationship kind="outlet" name="blackView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="LargeImageViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LargeImageViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="ImageLargeDoneButton:"/>
+                <relationship kind="outlet" name="imageLarge" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="PostingDetailViewController2" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PostingDetailViewController2.h"/>
+            <relationships>
+                <relationship kind="outlet" name="detailCreatedAtLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="detailDescriptionTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="detailImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="detailNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="detailPostingTypeLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PostingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PostingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="BackgroundTap:"/>
+                <relationship kind="action" name="cancelButtonPost:"/>
+                <relationship kind="action" name="doneEditing:"/>
+                <relationship kind="action" name="foundButtonPressed:"/>
+                <relationship kind="action" name="hideKeyboard:"/>
+                <relationship kind="action" name="lostButtonPressed:"/>
+                <relationship kind="action" name="showActionSheet:"/>
+                <relationship kind="action" name="takePictureWithCamera:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="foundButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="keyboardToolbar" candidateClass="UIView"/>
+                <relationship kind="outlet" name="lostButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="overLayCameraButton" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="overLayTextfield" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="postDescription" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="postName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="postUploadPhotoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="SecondViewController2" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController2.h"/>
+            <relationships>
+                <relationship kind="action" name="segmentSwitch:"/>
+                <relationship kind="action" name="segmentValueChanged:"/>
+                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="postingsFound" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="postingsLost" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="ThirdViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ThirdViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -29,7 +29,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [HUD hideUIBlockingIndicator];
+    
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"/UIBackground.png"]];
+    
+    _isImageLoaded = NO;
     
     [_postName.layer setCornerRadius:0.0f];
     _postName.layer.shouldRasterize = YES;
@@ -54,9 +59,11 @@
     
 	// Do any additional setup after loading the view.
     if ([_result isEqualToString:@"found"]) {
+        _lostButton.hidden=TRUE;
         _foundButton.hidden=FALSE;
     }
     if ([_result isEqualToString:@"lost"]) {
+        _foundButton.hidden=TRUE;
         _lostButton.hidden=FALSE;
     }
     self.postName.delegate = self;
@@ -174,7 +181,7 @@
     [HUD showUIBlockingIndicatorWithText:@"Posting..."];
     
     #define DataDownloaderRunMode @"myapp.run_mode"
-    UIImage *image = [UIImage imageNamed: @"/missing_image.png"];
+    UIImage *image = [[UIImage alloc] init];
     NSData *imageData = UIImageJPEGRepresentation(image, 90);
     
     NSString *urlString = @"http://foundit.andrewl.ca/postings/";
@@ -215,16 +222,18 @@
         [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
     }
     
-    NSDate *date = [NSDate date];
-
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"posting[photo]\"; filename=\"%@.jpg\"\r\n", date] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[NSData dataWithData:UIImageJPEGRepresentation(self.image, 90)]];
-    [body appendData:[NSData dataWithData:imageData]];
-    [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    if (_isImageLoaded == YES) {
+        NSLog(@"image not nil!!!");
+        NSDate *date = [NSDate date];
+        
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"posting[photo]\"; filename=\"%@.jpg\"\r\n", date] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithString:@"Content-Type: application/octet-stream\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[NSData dataWithData:UIImageJPEGRepresentation(self.image, 90)]];
+        [body appendData:[NSData dataWithData:imageData]];
+        [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    }
     
     // and again the delimiting boundary
     [body appendData:[[NSString stringWithFormat:@"--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -243,7 +252,7 @@
     [HUD hideUIBlockingIndicator];
     [self dismissModalViewControllerAnimated:YES];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post Successful" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
+    [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
 }
 
 - (void)takePictureWithCamera {
@@ -283,6 +292,7 @@
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
     _imageView.alpha = 1.0f;
     _imageView.image = self.image;
+    _isImageLoaded = YES;
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
@@ -306,7 +316,7 @@
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect. Please check your internet Connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
     }
 }
 
@@ -320,7 +330,7 @@
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect. Please check your internet Connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
     }
 }
 
@@ -329,13 +339,13 @@
     if ([_postName.text length] < 3 || [_postName.text length] > 20 )
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Post name must be between 3 and 20 characters." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
         return FALSE;
     }
     if ([_postDescription.text length] < 10)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Post description must be at least 10 characters." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
         return FALSE;
     }
     else {
@@ -344,9 +354,14 @@
 }
 
 -(IBAction)showActionSheet:(id)sender {
-	UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:@"Title" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Take Photo" otherButtonTitles:@"Choose Existing Photo", nil];
-	popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-	[popupQuery showInView:self.view];
+    if ([_result isEqualToString:@"lost"]) {
+        [self takePictureFromAlbum];
+    }
+    else {
+        UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:@"Upload Photo" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Take Photo" otherButtonTitles:@"Choose Existing Photo", nil];
+        popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+        [popupQuery showInView:self.view];
+    }
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {

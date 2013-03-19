@@ -19,6 +19,14 @@
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
         splitViewController.delegate = (id)navigationController.topViewController;
     }
+    
+    // Set the application defaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES"
+                                                            forKey:@"enableDelete"];
+    [defaults registerDefaults:appDefaults];
+    [defaults synchronize];
+    
     return YES;
 }
 							

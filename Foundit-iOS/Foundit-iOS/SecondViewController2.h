@@ -28,6 +28,7 @@
 @property (nonatomic, strong) NSDictionary* postings;
 @property (nonatomic, strong) NSURL *postingsUrl;
 @property (nonatomic) NSInteger* indexPathSend;
+@property (nonatomic) BOOL* viewPreviouslyLoaded;
 
 @property (strong, nonatomic) PostingDetailViewController2 *postingDetailViewController;
 - (BOOL)connected ;

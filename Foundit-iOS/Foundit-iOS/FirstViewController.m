@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 #import "PostingsViewController.h"
+#import "HUD.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface FirstViewController ()
@@ -67,16 +68,17 @@
             result = @"lost";
             PostingsViewController *vc = [segue destinationViewController];
             vc.result = result;
-            // do something else here, like tell the user why you didn't move them
         }
     }
 }
 
 - (IBAction)foundButtonAction:(id)sender {
     foundWasClicked = YES;
+    lostWasClicked = NO;
 }
 
 - (IBAction)lostButtonAction:(id)sender {
     lostWasClicked = YES;
+    foundWasClicked = NO;
 }
 @end

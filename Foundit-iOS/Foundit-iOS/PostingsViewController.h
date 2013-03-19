@@ -26,6 +26,8 @@
 @property (nonatomic, retain) IBOutlet UIView *keyboardToolbar;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
+@property (nonatomic) BOOL* isImageLoaded;
+
 //- (IBAction)uploadPost:(id)sender;
 - (IBAction)takePictureWithCamera:(UIButton*)sender;
 - (IBAction)cancelButtonPost:(id)sender;
