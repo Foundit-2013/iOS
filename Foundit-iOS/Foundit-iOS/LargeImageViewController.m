@@ -7,6 +7,7 @@
 //
 
 #import "LargeImageViewController.h"
+#import "HUD.h"
 
 @interface LargeImageViewController ()
 
@@ -29,9 +30,31 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 	// Do any additional setup after loading the view.
     
-    NSURL *url = [NSURL URLWithString:_imageOriginal];
-    UIImage *image = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
-    _imageLarge.image = image;
+//    @try{
+//    NSURL *url = [NSURL URLWithString:_imageOriginal];
+//    UIImage *image = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+//    _imageLarge.image = image;
+//    }
+//    @catch (NSException *ex){
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect to Server :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [alert show];
+//    }
+    [HUD showUIBlockingIndicatorWithText:@"Loading..."];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    @try{
+        NSURL *url = [NSURL URLWithString:_imageOriginal];
+        UIImage *image = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+        _imageLarge.image = image;
+    }
+    @catch (NSException *ex){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect to Server :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    [HUD hideUIBlockingIndicator];
 }
 
 - (void)didReceiveMemoryWarning

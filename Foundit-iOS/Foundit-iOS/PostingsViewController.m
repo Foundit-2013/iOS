@@ -309,9 +309,15 @@
 - (IBAction)lostButtonPressed:(id)sender {
     if ([self isConnectionAvailable] == TRUE){
         if ([self validateForms] == TRUE) {
-            [HUD showUIBlockingIndicatorWithText:@"Posting..."];
-            [self performSelectorInBackground:@selector(uploadPost) withObject:nil];
-            //        [self uploadPost];
+            @try {
+                [HUD showUIBlockingIndicatorWithText:@"Posting..."];
+                [self performSelectorInBackground:@selector(uploadPost) withObject:nil];
+                //        [self uploadPost];
+            }
+            @catch (NSException *ex){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect to Server :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            }
         }
     }
     else {
@@ -323,9 +329,15 @@
 - (IBAction)foundButtonPressed:(id)sender {
     if ([self isConnectionAvailable] == TRUE){
         if ([self validateForms] == TRUE) {
-            [HUD showUIBlockingIndicatorWithText:@"Posting..."];
-            [self performSelectorInBackground:@selector(uploadPost) withObject:nil];
-            //        [self uploadPost];
+            @try {
+                [HUD showUIBlockingIndicatorWithText:@"Posting..."];
+                [self performSelectorInBackground:@selector(uploadPost) withObject:nil];
+                //        [self uploadPost];
+            }
+            @catch (NSException *ex){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect to Server :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            }
         }
     }
     else {

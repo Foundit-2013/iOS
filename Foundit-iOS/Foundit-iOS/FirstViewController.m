@@ -22,6 +22,17 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
+    UIImage *defaultImage = [UIImage imageNamed:@"/Default.png"];
+    _coverImageView = [[UIImageView alloc] initWithImage:defaultImage];
+    [self.view addSubview:_coverImageView];
+    
+    [UIView animateWithDuration:1.0f
+                     animations:^{
+                         [self.coverImageView setAlpha:0.0];
+                     }
+                     completion:^(BOOL finished) {
+                     }];
+    
     CGRect cloudsImageFrameInitial = self.cloudsImage.frame;
     cloudsImageFrameInitial.origin.y = self.view.bounds.size.height;
     self.cloudsImage.frame = cloudsImageFrameInitial;
@@ -29,7 +40,7 @@
     CGRect cloudsImageFrameTransition = self.cloudsImage.frame;
     cloudsImageFrameTransition.origin.y = 251;
     
-    [UIView animateWithDuration:1.5
+    [UIView animateWithDuration:1.2
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
@@ -45,20 +56,10 @@
 {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
-    
-    UIImage *defaultImage = [UIImage imageNamed:@"/Default.png"];
-    _coverImageView = [[UIImageView alloc] initWithImage:defaultImage];
-    [self.view addSubview:_coverImageView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [UIView animateWithDuration:1.0f
-                     animations:^{
-                         [self.coverImageView setAlpha:0.0];
-                     }
-                     completion:^(BOOL finished) {
-                     }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

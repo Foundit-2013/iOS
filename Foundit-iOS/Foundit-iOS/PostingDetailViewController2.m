@@ -41,6 +41,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"/UIBackground.png"]];
     
+    @try {
     [HUD showUIBlockingIndicatorWithText:@"Loading..."];
     
     UIImage *image;
@@ -75,7 +76,12 @@
     frame = _detailDescriptionTextView.frame;
     frame.size.height = [_detailDescriptionTextView contentSize].height;
     _detailDescriptionTextView.frame = frame;
-    
+    }
+    @catch (NSException *ex){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect to Server :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning

@@ -60,25 +60,31 @@
 }
 
 -(void)fetchJSONfromServer:(NSURL *)url {
-    NSData *jsonData=[NSData dataWithContentsOfURL:_postingsUrl];
-    NSError *e = nil;
-    self.json = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&e];
-    
-    _images_downloaded = [[NSMutableArray alloc] init];
-    for (int i=0; i< self.json.count; i++) {
-        self.postings = [self.json objectAtIndex: i];
+    @try {
+        NSData *jsonData=[NSData dataWithContentsOfURL:_postingsUrl];
+        NSError *e = nil;
+        self.json = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&e];
         
-        UIImage *image;
-        if (![[self.postings objectForKey:@"photo_url_thumb"] isEqualToString: @"/photos/thumb/missing.png"]) {
-            NSString *myUrl = [self.postings objectForKey:@"photo_url_thumb"];
-            NSString * strRR = [NSString stringWithFormat:@"http://foundit.andrewl.ca/%@", myUrl];
-            NSURL *url = [NSURL URLWithString:strRR];
-            image = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+        _images_downloaded = [[NSMutableArray alloc] init];
+        for (int i=0; i< self.json.count; i++) {
+            self.postings = [self.json objectAtIndex: i];
+            
+            UIImage *image;
+            if (![[self.postings objectForKey:@"photo_url_thumb"] isEqualToString: @"/photos/thumb/missing.png"]) {
+                NSString *myUrl = [self.postings objectForKey:@"photo_url_thumb"];
+                NSString * strRR = [NSString stringWithFormat:@"http://foundit.andrewl.ca/%@", myUrl];
+                NSURL *url = [NSURL URLWithString:strRR];
+                image = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+            }
+            else {
+                image = [UIImage imageNamed:@"/missing_image.png"];
+            }
+            [_images_downloaded addObject: image];
         }
-        else {
-            image = [UIImage imageNamed:@"/missing_image.png"];
-        }
-        [_images_downloaded addObject: image];
+    }
+    @catch (NSException *ex){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect to Server :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
     }
 }
 
