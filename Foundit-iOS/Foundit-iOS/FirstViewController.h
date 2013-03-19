@@ -12,7 +12,9 @@
     bool foundWasClicked;
     bool lostWasClicked;
     
-    IBOutlet UIView *blackView;
+    UIImageView *coverImageView;
 }
+@property (strong, nonatomic) IBOutlet UIImageView *cloudsImage;
+@property (nonatomic, retain) UIImageView *coverImageView;
 
 @end

@@ -21,18 +21,22 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+
+    CGRect cloudsImageFrameInitial = self.cloudsImage.frame;
+    cloudsImageFrameInitial.origin.y = self.view.bounds.size.height;
+    self.cloudsImage.frame = cloudsImageFrameInitial;
     
-//    [UIView animateWithDuration:3
-//                          delay:0
-//                        options:UIViewAnimationOptionCurveEaseOut
-//                     animations:^{
-//                         blackView.layer.opacity = 100;
-//                     }
-//                     completion:^(BOOL finished) {
-//                         // This line prevents the flash
-//                         blackView.layer.opacity = 0;
-//                         [blackView removeFromSuperview];
-//                     }];
+    CGRect cloudsImageFrameTransition = self.cloudsImage.frame;
+    cloudsImageFrameTransition.origin.y = 251;
+    
+    [UIView animateWithDuration:1.5
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.cloudsImage.frame = cloudsImageFrameTransition;
+                     }
+                     completion:^(BOOL finished) {
+                     }];
     
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"/UIBackground.png"]];
 }
@@ -41,6 +45,20 @@
 {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+    
+    UIImage *defaultImage = [UIImage imageNamed:@"/Default.png"];
+    _coverImageView = [[UIImageView alloc] initWithImage:defaultImage];
+    [self.view addSubview:_coverImageView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [UIView animateWithDuration:1.0f
+                     animations:^{
+                         [self.coverImageView setAlpha:0.0];
+                     }
+                     completion:^(BOOL finished) {
+                     }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
