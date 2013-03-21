@@ -39,7 +39,12 @@
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     
     // Do any additional setup after loading the view, typically from a nib.
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"/UIBackground.png"]];
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"UIBackground.png"]];
+    
+//    self.tableView.backgroundColor=[UIColor clearColor];
+//    UIImage *backgroundImage = [UIImage imageNamed:@"UIBackground.png.png"];
+//    UIImageView *backgroundImageView = [[UIImageView alloc]initWithImage:backgroundImage];
+//    self.tableView.backgroundView=backgroundImageView;
     
     @try {
     [HUD showUIBlockingIndicatorWithText:@"Loading..."];
@@ -53,7 +58,7 @@
         image = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
     }
     else{
-        image = [UIImage imageNamed:@"/missing_image.png"];
+        image = [UIImage imageNamed:@"/missing_image_large.png"];
     }
     
     [HUD hideUIBlockingIndicator];

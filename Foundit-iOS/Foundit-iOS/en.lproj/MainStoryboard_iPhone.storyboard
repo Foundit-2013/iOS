@@ -66,40 +66,34 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="" id="Svz-ut-fM6">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="eGL-9t-pp6">
-                                        <rect key="frame" x="40" y="99" width="240" height="30"/>
-                                        <color key="backgroundColor" red="0.34149749089999998" green="0.51032162410000004" blue="0.79085880470000003" alpha="0.93999999999999995" colorSpace="calibratedRGB"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of the item" minimumFontSize="17" clearButtonMode="whileEditing" id="eGL-9t-pp6">
+                                        <rect key="frame" x="20" y="87" width="280" height="30"/>
+                                        <color key="backgroundColor" red="0.3109747275458245" green="0.46503878270351195" blue="0.744140625" alpha="0.94000000000000006" colorSpace="calibratedRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lYZ-2Q-Kp6">
-                                        <rect key="frame" x="40" y="56" width="99" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Item:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lYZ-2Q-Kp6">
+                                        <rect key="frame" x="28" y="64" width="99" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name of the item" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W3L-y4-Ehs">
-                                        <rect key="frame" x="40" y="77" width="111" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Description:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6jM-fh-0zK">
-                                        <rect key="frame" x="40" y="147" width="111" height="21"/>
+                                        <rect key="frame" x="28" y="136" width="111" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Description of the item and Contact Info" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D71-Km-y0C">
-                                        <rect key="frame" x="40" y="166" width="240" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Details of the item and Contact Info" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D71-Km-y0C">
+                                        <rect key="frame" x="28" y="155" width="240" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="GLz-W5-kyj">
                                         <rect key="frame" x="101" y="294" width="118" height="30"/>
-                                        <color key="backgroundColor" red="0.34149749089999998" green="0.51032162410000004" blue="0.79085880470000003" alpha="0.93999999999999995" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.31097472749999999" green="0.46503878269999999" blue="0.744140625" alpha="0.93999999999999995" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -142,13 +136,13 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="k6K-YM-kPo">
-                                        <rect key="frame" x="40" y="190" width="240" height="30"/>
-                                        <color key="backgroundColor" red="0.34149749089999998" green="0.51032162410000004" blue="0.79085880470000003" alpha="0.93999999999999995" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="20" y="179" width="280" height="30"/>
+                                        <color key="backgroundColor" red="0.31097472749999999" green="0.46503878269999999" blue="0.744140625" alpha="0.93999999999999995" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" id="mdD-Zp-FIX">
-                                        <rect key="frame" x="40" y="190" width="240" height="95"/>
+                                        <rect key="frame" x="20" y="178.5" width="280" height="107.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
@@ -270,27 +264,27 @@ Parnit Pooni</string>
         <scene sceneID="Sar-63-7D2">
             <objects>
                 <tableViewController id="qfM-z5-8eK" customClass="SecondViewController2" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="68" sectionHeaderHeight="22" sectionFooterHeight="22" id="l0o-4n-FwU">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="78" sectionHeaderHeight="22" sectionFooterHeight="22" id="l0o-4n-FwU">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="h0U-zh-Jhz" detailTextLabel="VON-tB-qg5" rowHeight="67" style="IBUITableViewCellStyleSubtitle" id="G3z-El-JG9">
-                                <rect key="frame" x="0.0" y="22" width="320" height="67"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="h0U-zh-Jhz" detailTextLabel="VON-tB-qg5" rowHeight="78" style="IBUITableViewCellStyleSubtitle" id="G3z-El-JG9">
+                                <rect key="frame" x="0.0" y="22" width="320" height="78"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="66"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="77"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h0U-zh-Jhz">
-                                            <rect key="frame" x="10" y="13" width="38" height="22"/>
+                                            <rect key="frame" x="10" y="19" width="38" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VON-tB-qg5">
-                                            <rect key="frame" x="10" y="35" width="36" height="18"/>
+                                            <rect key="frame" x="10" y="41" width="36" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
@@ -579,7 +573,6 @@ Parnit Pooni</string>
             <relationships>
                 <relationship kind="action" name="BackgroundTap:"/>
                 <relationship kind="action" name="cancelButtonPost:"/>
-                <relationship kind="action" name="doneEditing:"/>
                 <relationship kind="action" name="foundButtonPressed:"/>
                 <relationship kind="action" name="hideKeyboard:"/>
                 <relationship kind="action" name="lostButtonPressed:"/>
@@ -618,6 +611,6 @@ Parnit Pooni</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="cAy-lh-yYo"/>
+        <segue reference="NJe-FC-Kdt"/>
     </inferredMetricsTieBreakers>
 </document>

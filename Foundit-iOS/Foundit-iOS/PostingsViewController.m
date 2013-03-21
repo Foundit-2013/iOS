@@ -32,15 +32,19 @@
     
     [HUD hideUIBlockingIndicator];
     
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"/UIBackground.png"]];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"UIBackground.png"]];
     
     _isImageLoaded = NO;
+    _postDescriptionFilled = NO;
+    
+    [_postDescription setText:@"What?\nWhere?\nWhen?\nContact Info."];
+    [_postDescription setTextColor:[UIColor lightGrayColor]];
     
     [_postName.layer setCornerRadius:0.0f];
     _postName.layer.shouldRasterize = YES;
     
     CGRect frameRect = _overLayTextfield.frame;
-    frameRect.size.height = 95;
+    frameRect.size.height = 108;
     _overLayTextfield.frame = frameRect;
     
     [_overLayTextfield.layer setCornerRadius:0.0f];
@@ -110,6 +114,11 @@
 
 -(void)textViewShouldBeginEditing:(UITextField *)textView {
     [_scrollView setContentOffset:CGPointMake(0, 120 ) animated:YES];
+    if (_postDescription.textColor == [UIColor lightGrayColor]) {
+        _postDescription.text = @"";
+        _postDescription.textColor = [UIColor whiteColor];
+        _postDescriptionFilled = YES;
+    }
     if (!textView.inputAccessoryView) {
         textView.inputAccessoryView = [self keyboardToolBar];
     }
@@ -117,6 +126,11 @@
 
 -(void)textViewDidEndEditing:(UITextField *)textField {
     [_scrollView setContentOffset:CGPointMake(0, 0 ) animated:YES];
+    if (_postDescription.text.length == 0) {
+        _postDescription.text = @"What?\nWhere?\nWhen?\nContact Info.";
+        _postDescription.textColor = [UIColor lightGrayColor];
+        _postDescriptionFilled = NO;
+    }
 }
 
 #pragma mark -
@@ -141,7 +155,7 @@
 	SCNetworkReachabilityFlags flags;
     BOOL receivedFlags;
     
-    SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithName(CFAllocatorGetDefault(), [@"google.com" UTF8String]);
+    SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithName(CFAllocatorGetDefault(), [@"foundit.andrewl.ca" UTF8String]);
     receivedFlags = SCNetworkReachabilityGetFlags(reachability, &flags);
     CFRelease(reachability);
     
@@ -223,7 +237,6 @@
     }
     
     if (_isImageLoaded == YES) {
-        NSLog(@"image not nil!!!");
         NSDate *date = [NSDate date];
         
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -247,13 +260,36 @@
     NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
     NSLog(@"%@",returnString);
-    NSLog(@"finish");
 
     [HUD hideUIBlockingIndicator];
+//    [self dismissViewControllerAnimated:NO completion:nil];
     [self dismissModalViewControllerAnimated:YES];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post Successful" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+    [self showInfoAlert];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Post Successful" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//    [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
 }
+
+- (void)showInfoAlert {
+    
+    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:keyWindow animated:YES];
+    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"btnCheck.png"]];
+    hud.mode = MBProgressHUDModeCustomView;
+    hud.labelText = @"Posting Successful!";
+    [self.view.window addSubview:hud];
+    
+    [hud showWhileExecuting:@selector(waitForSeconds) onTarget:self withObject:nil animated:YES];
+}
+
+- (void)waitForSeconds {
+    sleep(1.5);
+}
+
+//- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
+//    NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+//    int code = [httpResponse statusCode];
+//    NSLog(@"%i", code);
+//}
 
 - (void)takePictureWithCamera {
     if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
@@ -311,8 +347,12 @@
         if ([self validateForms] == TRUE) {
             @try {
                 [HUD showUIBlockingIndicatorWithText:@"Posting..."];
-                [self performSelectorInBackground:@selector(uploadPost) withObject:nil];
-                //        [self uploadPost];
+                
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    [self uploadPost];
+                });
+//                [self performSelectorOnMainThread:@selector(uploadPost) withObject: nil waitUntilDone: YES];
             }
             @catch (NSException *ex){
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect to Server :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -331,8 +371,12 @@
         if ([self validateForms] == TRUE) {
             @try {
                 [HUD showUIBlockingIndicatorWithText:@"Posting..."];
-                [self performSelectorInBackground:@selector(uploadPost) withObject:nil];
-                //        [self uploadPost];
+                
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    [self uploadPost];
+                });
+//                [self performSelectorOnMainThread:@selector(uploadPost) withObject: nil waitUntilDone: YES];
             }
             @catch (NSException *ex){
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect to Server :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -354,7 +398,7 @@
         [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
         return FALSE;
     }
-    if ([_postDescription.text length] < 10)
+    if ([_postDescription.text length] < 10 || _postDescriptionFilled == NO)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Post description must be at least 10 characters." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];

@@ -40,7 +40,7 @@
     CGRect cloudsImageFrameTransition = self.cloudsImage.frame;
     cloudsImageFrameTransition.origin.y = 251;
     
-    [UIView animateWithDuration:1.2
+    [UIView animateWithDuration:1.1
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
@@ -49,7 +49,7 @@
                      completion:^(BOOL finished) {
                      }];
     
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"/UIBackground.png"]];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"UIBackground.png"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated

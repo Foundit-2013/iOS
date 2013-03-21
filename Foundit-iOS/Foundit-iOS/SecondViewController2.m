@@ -32,7 +32,7 @@
 	SCNetworkReachabilityFlags flags;
     BOOL receivedFlags;
     
-    SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithName(CFAllocatorGetDefault(), [@"google.com" UTF8String]);
+    SCNetworkReachabilityRef reachability = SCNetworkReachabilityCreateWithName(CFAllocatorGetDefault(), [@"foundit.andrewl.ca" UTF8String]);
     receivedFlags = SCNetworkReachabilityGetFlags(reachability, &flags);
     CFRelease(reachability);
     
@@ -48,7 +48,7 @@
 {
     self.tableView.dataSource = self;
     [super viewDidLoad];
-    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"/UIBackground.png"]];
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"UIBackground.png"]];
     
     _postingsUrl = [NSURL URLWithString:@"http://foundit.andrewl.ca/postings_show_found.json"];
     
@@ -81,10 +81,13 @@
             }
             [_images_downloaded addObject: image];
         }
+        
+        [self performSelectorOnMainThread:@selector(refreshTableView) withObject:nil waitUntilDone:NO];
     }
     @catch (NSException *ex){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect to Server :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+//        [alert show];
     }
 }
 
@@ -115,7 +118,7 @@
             _viewPreviouslyLoaded = NO;
             
             [myTableView reloadData];
-            [self.tableView reloadData];
+//            [self.tableView reloadData];
         }
         else {}
     }
@@ -163,7 +166,7 @@
     
     self.postings = [self.json objectAtIndex: indexPath.row];
     
-    CGSize itemSize = CGSizeMake(60, 60);
+    CGSize itemSize = CGSizeMake(114, 114);
     UIGraphicsBeginImageContext(itemSize);
     CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
     
@@ -206,9 +209,9 @@
     if ([self isConnectionAvailable] == TRUE){
         
         UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:keyWindow animated:YES];
-        hud.labelText = @"Loading...";
-        [self.view.window addSubview:hud];
+//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:keyWindow animated:YES];
+//        hud.labelText = @"Loading...";
+//        [self.view.window addSubview:hud];
         
         UISegmentedControl *seg = sender;
         if (seg.selectedSegmentIndex == 0) {
@@ -217,14 +220,17 @@
             [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.tableView cache:NO];
             [UIView commitAnimations];
             
+            self.json = @[];
             _postingsUrl = [NSURL URLWithString:@"http://foundit.andrewl.ca/postings_show_found.json"];
 //            [hud showWhileExecuting:@selector(fetchJSONfromServer:) onTarget:self withObject:_postingsUrl animated:YES];
 //            [self performSelectorInBackground:@selector(fetchJSONfromServer:) withObject:_postingsUrl];
-            [self fetchJSONfromServer:_postingsUrl];
+            [self performSelectorInBackground:@selector(fetchJSONfromServer:) withObject:_postingsUrl];
+//            [self fetchJSONfromServer:_postingsUrl];
             
             [myTableView reloadData];
             [self.tableView reloadData];
-            [hud hide:YES];
+            [HUD showUIBlockingIndicatorWithText:@"Loading..."];
+//            [hud hide:YES];
         }
         else if (seg.selectedSegmentIndex == 1) {
             [UIView beginAnimations:nil context:nil];
@@ -232,14 +238,17 @@
             [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.tableView cache:NO];
             [UIView commitAnimations];
             
+            self.json = @[];
             _postingsUrl = [NSURL URLWithString:@"http://foundit.andrewl.ca/postings_show_lost.json"];
 //            [hud showWhileExecuting:@selector(fetchJSONfromServer:) onTarget:self withObject:_postingsUrl animated:YES];
 //            [self performSelectorInBackground:@selector(fetchJSONfromServer:) withObject:_postingsUrl];
-            [self fetchJSONfromServer:_postingsUrl];
+            [self performSelectorInBackground:@selector(fetchJSONfromServer:) withObject:_postingsUrl];
+//            [self fetchJSONfromServer:_postingsUrl];
             
             [myTableView reloadData];
             [self.tableView reloadData];
-            [hud hide:YES];
+            [HUD showUIBlockingIndicatorWithText:@"Loading..."];
+//            [hud hide:YES];
         }
     }
     else {
@@ -262,6 +271,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"ShowPostingDetailsFound"]) {
+        [HUD showUIBlockingIndicatorWithText:@"Loading..."];
         self.postings = [self.json objectAtIndex: _indexPathSend];
         NSArray *json = @[[self.postings objectForKey:@"name"],[self.postings objectForKey:@"posting_type"],[self.postings objectForKey:@"created_at_formatted"],[self.postings objectForKey:@"description"],[self.postings objectForKey:@"photo_url_large"]];
         PostingDetailViewController2 *vc = [segue destinationViewController];
@@ -272,10 +282,19 @@
 
 - (void)refreshTable
 {
-    [HUD showUIBlockingIndicatorWithText:@"Loading..."];
-    [self fetchJSONfromServer:_postingsUrl];
+//    [HUD showUIBlockingIndicatorWithText:@"Loading..."];
+    [self performSelectorInBackground:@selector(fetchJSONfromServer:) withObject:_postingsUrl];
+//    [self fetchJSONfromServer:_postingsUrl];
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
+//    [HUD hideUIBlockingIndicator];
+}
+
+- (void)refreshTableView
+{
+    [HUD showUIBlockingIndicatorWithText:@"Loading..."];
+    [myTableView reloadData];
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     [HUD hideUIBlockingIndicator];
 }
 
@@ -292,8 +311,6 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //remove the deleted object from your data source.
-        //If you're data source is an NSMutableArray, do this
         self.postings = [self.json objectAtIndex: indexPath.row];
         
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -304,7 +321,8 @@
         [request setHTTPMethod:@"DELETE"];
         NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
         
-        [self refreshTable];
+        [self performSelectorInBackground:@selector(fetchJSONfromServer:) withObject:_postingsUrl];
+//        [self performSelectorOnMainThread:@selector(refreshTableView) withObject:nil waitUntilDone:NO];
     }
 }
 

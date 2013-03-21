@@ -60,7 +60,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Foundit-iOS/FirstViewController.m"
-         timestampString = "385403604.631135"
+         timestampString = "385509751.075229"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "87"
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Foundit-iOS/PostingsViewController.m"
-         timestampString = "385354870.103793"
+         timestampString = "385519043.583212"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "193"
-         endingLineNumber = "193"
+         startingLineNumber = "207"
+         endingLineNumber = "207"
          landmarkName = "-uploadPost"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Foundit-iOS/PostingsViewController.m"
-         timestampString = "385354870.103793"
+         timestampString = "385519043.583212"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "198"
-         endingLineNumber = "198"
+         startingLineNumber = "212"
+         endingLineNumber = "212"
          landmarkName = "-uploadPost"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Foundit-iOS/SecondViewController2.m"
-         timestampString = "385413327.066051"
+         timestampString = "385512101.24308"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "104"
-         endingLineNumber = "104"
+         startingLineNumber = "107"
+         endingLineNumber = "107"
          landmarkName = "-viewDidAppear:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -125,7 +125,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Foundit-iOS/FirstViewController.m"
-         timestampString = "385403604.631135"
+         timestampString = "385509751.075229"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "58"
@@ -138,7 +138,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Foundit-iOS/FirstViewController.m"
-         timestampString = "385403604.631135"
+         timestampString = "385509751.075229"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "58"
@@ -151,13 +151,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Foundit-iOS/PostingDetailViewController2.m"
-         timestampString = "385413464.605227"
+         timestampString = "385415031.417476"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "80"
-         endingLineNumber = "80"
-         landmarkName = "@implementation PostingDetailViewController2"
-         landmarkType = "3">
+         startingLineNumber = "85"
+         endingLineNumber = "85"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

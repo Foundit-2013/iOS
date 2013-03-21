@@ -27,6 +27,7 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (nonatomic) BOOL* isImageLoaded;
+@property (nonatomic) BOOL* postDescriptionFilled;
 
 //- (IBAction)uploadPost:(id)sender;
 - (IBAction)takePictureWithCamera:(UIButton*)sender;
