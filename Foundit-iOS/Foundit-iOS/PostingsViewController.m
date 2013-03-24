@@ -321,12 +321,20 @@
 }
 
 -(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary*)info {
+//    double compressionRatio=1;
+//    NSData *imgData=UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerOriginalImage"],compressionRatio);
+//    while ([imgData length]>50000) {
+//        compressionRatio=compressionRatio*0.5;
+//        imgData=UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerOriginalImage"],compressionRatio);
+//    }
+//    UIImage *img=[[UIImage alloc] initWithData:imgData];
     _image = [info objectForKey: UIImagePickerControllerOriginalImage];
     [self dismissModalViewControllerAnimated:YES];
     // Do stuff to image.
     _imageView.hidden = NO;
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
     _imageView.alpha = 1.0f;
+//    _imageView.image = img;
     _imageView.image = self.image;
     _isImageLoaded = YES;
 }

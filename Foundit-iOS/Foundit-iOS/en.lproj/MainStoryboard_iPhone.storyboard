@@ -21,7 +21,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="R2r-Cs-3NK">
                                 <rect key="frame" x="55" y="259" width="210" height="44"/>
                                 <accessibility key="accessibilityConfiguration" label="Fountit"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                                 <state key="normal" title="Found it" backgroundImage="blue.png">
                                     <color key="titleColor" red="0.97604360237589749" green="1" blue="0.99163376023284333" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -33,7 +33,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ftV-Ap-OUh">
                                 <rect key="frame" x="55" y="341" width="210" height="44"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                                 <state key="normal" title="Lost it" backgroundImage="blue.png">
                                     <color key="titleColor" red="0.96126320169122248" green="1" blue="0.99421156022875146" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -66,9 +66,12 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="" id="Svz-ut-fM6">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" image="Clouds_only2.png" id="voY-dZ-hfz">
+                                        <rect key="frame" x="0.0" y="271" width="320" height="189"/>
+                                    </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of the item" minimumFontSize="17" clearButtonMode="whileEditing" id="eGL-9t-pp6">
                                         <rect key="frame" x="20" y="87" width="280" height="30"/>
-                                        <color key="backgroundColor" red="0.3109747275458245" green="0.46503878270351195" blue="0.744140625" alpha="0.94000000000000006" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.25644172801352921" green="0.38509371185668645" blue="0.599609375" alpha="0.94000000000000006" colorSpace="calibratedRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -93,7 +96,7 @@
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="GLz-W5-kyj">
                                         <rect key="frame" x="101" y="294" width="118" height="30"/>
-                                        <color key="backgroundColor" red="0.31097472749999999" green="0.46503878269999999" blue="0.744140625" alpha="0.93999999999999995" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.25644172801352921" green="0.38509371185668645" blue="0.599609375" alpha="0.94000000000000006" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -115,7 +118,7 @@
                                         <accessibility key="accessibilityConfiguration" label="Fountit">
                                             <accessibilityTraits key="traits" none="YES" button="YES"/>
                                         </accessibility>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                                         <state key="normal" title="Post Found it" backgroundImage="blue.png">
                                             <color key="titleColor" red="0.97604360239999999" green="1" blue="0.99163376020000005" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -126,7 +129,7 @@
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rqX-uS-pyj">
                                         <rect key="frame" x="51" y="396" width="210" height="44"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                                         <state key="normal" title="Post Lost it" backgroundImage="blue.png">
                                             <color key="titleColor" red="0.96126320170000001" green="1" blue="0.99421156020000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -137,7 +140,7 @@
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="k6K-YM-kPo">
                                         <rect key="frame" x="20" y="179" width="280" height="30"/>
-                                        <color key="backgroundColor" red="0.31097472749999999" green="0.46503878269999999" blue="0.744140625" alpha="0.93999999999999995" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.25644172801352921" green="0.38509371185668645" blue="0.599609375" alpha="0.94000000000000006" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -148,7 +151,7 @@
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFit" image="camera_icon@2x.png" id="xDY-gq-UYP">
+                                    <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFit" image="camera_icon@2x.png" id="xDY-gq-UYP">
                                         <rect key="frame" x="101" y="299" width="118" height="80"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
@@ -254,7 +257,7 @@ Parnit Pooni</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="About it" image="products.png" id="vAH-Oy-Vhu"/>
+                    <tabBarItem key="tabBarItem" title="About it" image="0.0_about_60.png" id="vAH-Oy-Vhu"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="45d-fq-EMG" sceneMemberID="firstResponder"/>
             </objects>
@@ -495,7 +498,7 @@ Parnit Pooni</string>
         <scene sceneID="e5v-0N-upl">
             <objects>
                 <navigationController id="Ray-bU-8uc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List it" image="eflyer.png" id="6"/>
+                    <tabBarItem key="tabBarItem" title="List it" image="0.0_shoppinglist_60.png" id="6"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="icz-eU-1re">
@@ -515,7 +518,7 @@ Parnit Pooni</string>
         <scene sceneID="tRa-lj-BuC">
             <objects>
                 <navigationController id="ZwO-Ol-D0z" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Post it" image="home.png" id="7"/>
+                    <tabBarItem key="tabBarItem" title="Post it" image="0.0_home_60.png" id="7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Gvj-1k-Mis">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -532,14 +535,14 @@ Parnit Pooni</string>
         </scene>
     </scenes>
     <resources>
+        <image name="0.0_about_60.png" width="26" height="24"/>
+        <image name="0.0_home_60.png" width="26" height="24"/>
+        <image name="0.0_shoppinglist_60.png" width="26" height="24"/>
         <image name="Clouds_only2.png" width="1303" height="858"/>
         <image name="FounditLogo@2x.png" width="556" height="213"/>
         <image name="blue.png" width="390" height="90"/>
         <image name="blue_pressed.png" width="390" height="90"/>
         <image name="camera_icon@2x.png" width="398" height="398"/>
-        <image name="eflyer.png" width="30" height="30"/>
-        <image name="home.png" width="30" height="30"/>
-        <image name="products.png" width="30" height="30"/>
     </resources>
     <classes>
         <class className="FirstViewController" superclassName="UIViewController">
@@ -573,6 +576,7 @@ Parnit Pooni</string>
             <relationships>
                 <relationship kind="action" name="BackgroundTap:"/>
                 <relationship kind="action" name="cancelButtonPost:"/>
+                <relationship kind="action" name="doneEditing:"/>
                 <relationship kind="action" name="foundButtonPressed:"/>
                 <relationship kind="action" name="hideKeyboard:"/>
                 <relationship kind="action" name="lostButtonPressed:"/>
