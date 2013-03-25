@@ -151,7 +151,7 @@
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFit" image="camera_icon@2x.png" id="xDY-gq-UYP">
+                                    <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="center" image="camera_icon@2x.png" id="xDY-gq-UYP">
                                         <rect key="frame" x="101" y="299" width="118" height="80"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
@@ -542,7 +542,7 @@ Parnit Pooni</string>
         <image name="FounditLogo@2x.png" width="556" height="213"/>
         <image name="blue.png" width="390" height="90"/>
         <image name="blue_pressed.png" width="390" height="90"/>
-        <image name="camera_icon@2x.png" width="398" height="398"/>
+        <image name="camera_icon@2x.png" width="64" height="64"/>
     </resources>
     <classes>
         <class className="FirstViewController" superclassName="UIViewController">
