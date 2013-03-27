@@ -69,6 +69,29 @@
     if ([_json[1] isEqualToString:@"1"]) {
         postingType = @"Lost";
     }
+
+    if ([_json[5] doubleValue] > 0.0 || [_json[6] doubleValue] > 0.0) {
+        MKPointAnnotation *detailPoint = [[MKPointAnnotation alloc] init];
+        CLLocationCoordinate2D annotationCoord;
+        
+        [_detailMapView setZoomEnabled:YES];
+        [_detailMapView setScrollEnabled:YES];
+        
+        annotationCoord.latitude = [_json[5] doubleValue];
+        annotationCoord.longitude = [_json[6] doubleValue];
+        detailPoint.coordinate = annotationCoord;
+        [_detailMapView addAnnotation:detailPoint];
+        
+        CLLocationCoordinate2D zoomLocation;
+        zoomLocation.latitude = [_json[5] doubleValue];
+        zoomLocation.longitude= [_json[6] doubleValue];
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 900, 900);
+        [_detailMapView setRegion:viewRegion animated:YES];
+    }
+    else {
+        _detailMapView.hidden = YES;
+    }
+    
     _detailPostingTypeLabel.text = [NSString stringWithFormat:@"Posting Type: %@ Item", postingType];
     _detailCreatedAtLabel.text = [NSString stringWithFormat:@"Date Posted: %@", _json[2]];
     _detailDescriptionTextView.text = _json[3];
@@ -97,6 +120,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0 && indexPath.row == 3) {
+        if ([_json[5] doubleValue] > 0.0 || [_json[6] doubleValue] > 0.0) {
+            return 192;
+        }
+        else {
+            return 0;
+        }
+    }
+    if(indexPath.section == 0 && indexPath.row == 4) {
         return _detailDescriptionTextView.frame.size.height + 30.0;
     }
     // "Else"

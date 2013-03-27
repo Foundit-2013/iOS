@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Foundit-iOS/PostingsViewController.m"
-         timestampString = "385519043.583212"
+         timestampString = "386043852.262524"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "207"
-         endingLineNumber = "207"
+         startingLineNumber = "220"
+         endingLineNumber = "220"
          landmarkName = "-uploadPost"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Foundit-iOS/PostingsViewController.m"
-         timestampString = "385519043.583212"
+         timestampString = "386043852.262524"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "212"
-         endingLineNumber = "212"
+         startingLineNumber = "225"
+         endingLineNumber = "225"
          landmarkName = "-uploadPost"
          landmarkType = "5">
       </FileBreakpoint>
@@ -151,11 +151,37 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Foundit-iOS/PostingDetailViewController2.m"
-         timestampString = "385415031.417476"
+         timestampString = "386048115.86511"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "85"
-         endingLineNumber = "85"
+         startingLineNumber = "108"
+         endingLineNumber = "108"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Foundit-iOS/AppDelegate.m"
+         timestampString = "386038532.441886"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "12"
+         endingLineNumber = "12"
+         landmarkName = "@implementation AppDelegate"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Foundit-iOS/CustomMapViewViewController.m"
+         timestampString = "386048674.645637"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "41"
+         endingLineNumber = "41"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>

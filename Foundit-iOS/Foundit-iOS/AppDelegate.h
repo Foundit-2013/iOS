@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+double locationLatitudeGlobal;
+double locationLongitudeGlobal;
+@interface AppDelegate : UIResponder <UIApplicationDelegate> {
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+}
 
 @property (strong, nonatomic) UIWindow *window;
+//@property (nonatomic, assign) double *locationLatitudeGlobal;
+//@property (nonatomic, assign) double *locationLongitudeGlobal;
 
 @end

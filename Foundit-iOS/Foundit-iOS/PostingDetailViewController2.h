@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
 @interface PostingDetailViewController2 : UITableViewController
 
@@ -17,6 +18,8 @@
 @property (strong, nonatomic) IBOutlet UITextView *detailDescriptionLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *detailImageView;
 @property (strong, nonatomic) IBOutlet UITextView *detailDescriptionTextView;
+@property (strong, nonatomic) IBOutlet MKMapView *detailMapView;
+
 @property (strong, nonatomic) NSString *myUrl;
 
 @property (nonatomic, strong) NSArray *json;

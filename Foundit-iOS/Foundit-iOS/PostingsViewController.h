@@ -37,7 +37,9 @@
 - (IBAction)hideKeyboard:(id)sender;
 @property (strong, nonatomic) IBOutlet UITextField *overLayTextfield;
 @property (strong, nonatomic) IBOutlet UITextField *overLayCameraButton;
+@property (strong, nonatomic) IBOutlet UITextField *overLayTextfieldLocation;
 
+@property (strong, nonatomic) IBOutlet UIImageView *locationImageView;
 
 
 

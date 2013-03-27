@@ -9,6 +9,7 @@
 #import "PostingsViewController.h"
 #import "SystemConfiguration/SystemConfiguration.h"
 #import "HUD.h"
+#import "AppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface PostingsViewController ()
@@ -50,6 +51,14 @@
     [_overLayTextfield.layer setCornerRadius:0.0f];
     _overLayTextfield.layer.shouldRasterize = YES;
     
+    
+    CGRect frameRectLoc = _overLayTextfieldLocation.frame;
+    frameRectLoc.size.height = 90;
+    _overLayTextfieldLocation.frame = frameRectLoc;
+    
+    [_overLayTextfieldLocation.layer setCornerRadius:0.0f];
+    _overLayTextfieldLocation.layer.shouldRasterize = YES;
+    
     CGRect frameRect2 = _overLayCameraButton.frame;
     frameRect2.size.height = 90;
     _overLayCameraButton.frame = frameRect2;
@@ -84,6 +93,10 @@
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    if (locationLatitudeGlobal != 0.0 || locationLongitudeGlobal != 0.0) {
+        _locationImageView.image = [UIImage imageNamed:@"globe_64_selected.png"];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -224,6 +237,16 @@
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"posting[description]\"\r\n\r\n%@", _postDescription.text] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSString *latitude = [NSString stringWithFormat:@"%g", locationLatitudeGlobal];
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"posting[latitude]\"\r\n\r\n%@", latitude] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSString *longitude = [NSString stringWithFormat:@"%g", locationLongitudeGlobal];
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"posting[longitude]\"\r\n\r\n%@", longitude] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
 
     if ([_result isEqualToString:@"found"]) {
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -279,6 +302,8 @@
     [self.view.window addSubview:hud];
     
     [hud showWhileExecuting:@selector(waitForSeconds) onTarget:self withObject:nil animated:YES];
+    locationLongitudeGlobal = 0.0;
+    locationLatitudeGlobal = 0.0;
 }
 
 - (void)waitForSeconds {
@@ -351,6 +376,8 @@
 }
 
 - (IBAction)lostButtonPressed:(id)sender {
+    NSLog(@"%f",locationLatitudeGlobal);
+
     if ([self isConnectionAvailable] == TRUE){
         if ([self validateForms] == TRUE) {
             @try {

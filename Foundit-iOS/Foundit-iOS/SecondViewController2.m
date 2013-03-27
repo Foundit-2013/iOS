@@ -273,7 +273,7 @@
     if ([[segue identifier] isEqualToString:@"ShowPostingDetailsFound"]) {
         [HUD showUIBlockingIndicatorWithText:@"Loading..."];
         self.postings = [self.json objectAtIndex: _indexPathSend];
-        NSArray *json = @[[self.postings objectForKey:@"name"],[self.postings objectForKey:@"posting_type"],[self.postings objectForKey:@"created_at_formatted"],[self.postings objectForKey:@"description"],[self.postings objectForKey:@"photo_url_large"]];
+        NSArray *json = @[[self.postings objectForKey:@"name"],[self.postings objectForKey:@"posting_type"],[self.postings objectForKey:@"created_at_formatted"],[self.postings objectForKey:@"description"],[self.postings objectForKey:@"photo_url_large"],[self.postings objectForKey:@"latitude"],[self.postings objectForKey:@"longitude"]];
         PostingDetailViewController2 *vc = [segue destinationViewController];
         vc.json = json;
     }
