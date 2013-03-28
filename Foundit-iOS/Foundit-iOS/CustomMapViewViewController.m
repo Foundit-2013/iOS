@@ -32,6 +32,8 @@
 {
     [super viewDidLoad];
     
+    _isFirstLocation = YES;
+    
     locationManager = [[CLLocationManager alloc] init];
     [locationManager setDelegate:self];
     locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
@@ -52,24 +54,29 @@
 
 -(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
 
-    MKCoordinateSpan span;
-
-    span.latitudeDelta = 0.2;
-
-    span.longitudeDelta = 0.2;
-
-    MKCoordinateRegion region;
-
-    region.span = span;
-
-    region.center = newLocation.coordinate;
-
-    [_mapView setRegion:region animated:YES];
-    _mapView.showsUserLocation = YES;
     
-    _centerAnnotation.coordinate = newLocation.coordinate;
-    [_mapView addAnnotation:_centerAnnotation];
-    
+    if (_isFirstLocation == YES) {
+        
+        _isFirstLocation = NO;
+        
+        MKCoordinateSpan span;
+        
+        span.latitudeDelta = 0.2;
+        
+        span.longitudeDelta = 0.2;
+        
+        MKCoordinateRegion region;
+        
+        region.span = span;
+        
+        region.center = newLocation.coordinate;
+        
+        [_mapView setRegion:region animated:YES];
+        _mapView.showsUserLocation = YES;
+        
+        _centerAnnotation.coordinate = newLocation.coordinate;
+        [_mapView addAnnotation:_centerAnnotation];
+    }
     
     locationLatitudeGlobal = newLocation.coordinate.latitude;
     locationLongitudeGlobal = newLocation.coordinate.longitude;

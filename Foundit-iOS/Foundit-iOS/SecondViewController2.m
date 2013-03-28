@@ -273,6 +273,7 @@
     if ([[segue identifier] isEqualToString:@"ShowPostingDetailsFound"]) {
         [HUD showUIBlockingIndicatorWithText:@"Loading..."];
         self.postings = [self.json objectAtIndex: _indexPathSend];
+        
         NSArray *json = @[[self.postings objectForKey:@"name"],[self.postings objectForKey:@"posting_type"],[self.postings objectForKey:@"created_at_formatted"],[self.postings objectForKey:@"description"],[self.postings objectForKey:@"photo_url_large"],[self.postings objectForKey:@"latitude"],[self.postings objectForKey:@"longitude"]];
         PostingDetailViewController2 *vc = [segue destinationViewController];
         vc.json = json;
@@ -284,18 +285,18 @@
 {
 //    [HUD showUIBlockingIndicatorWithText:@"Loading..."];
     [self performSelectorInBackground:@selector(fetchJSONfromServer:) withObject:_postingsUrl];
-//    [self fetchJSONfromServer:_postingsUrl];
-    [self.tableView reloadData];
-    [self.refreshControl endRefreshing];
+//    [self.tableView reloadData];
+//    [self.refreshControl endRefreshing];
 //    [HUD hideUIBlockingIndicator];
 }
 
 - (void)refreshTableView
 {
-    [HUD showUIBlockingIndicatorWithText:@"Loading..."];
+//    [HUD showUIBlockingIndicatorWithText:@"Loading..."];
     [myTableView reloadData];
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     [HUD hideUIBlockingIndicator];
+    [self.refreshControl endRefreshing];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

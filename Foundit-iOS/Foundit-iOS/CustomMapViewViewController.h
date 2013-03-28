@@ -22,6 +22,7 @@
 @property (nonatomic, retain) MKPointAnnotation *centerAnnotation;
 - (IBAction)setLoc:(id)sender;
 
+@property (nonatomic) BOOL* isFirstLocation;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
