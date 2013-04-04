@@ -342,6 +342,8 @@
 }
 
 - (IBAction)cancelButtonPost:(id)sender {
+    locationLongitudeGlobal = 0.0;
+    locationLatitudeGlobal = 0.0;
     [self dismissModalViewControllerAnimated:YES];
 }
 
