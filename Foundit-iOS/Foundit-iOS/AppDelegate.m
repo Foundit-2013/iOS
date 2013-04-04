@@ -14,7 +14,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     locationLongitudeGlobal = 0.0;
-    locationLatitudeGlobal = 0.0;
+    locationLatitudeGlobal = 0.0; 
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
@@ -24,8 +24,13 @@
     
     // Set the application defaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES"
-                                                            forKey:@"enableDelete"];
+    
+    founditUsername = [defaults valueForKey:@"founditUsername"];
+    
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES" forKey:@"enableDelete"];
+    NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"" forKey:@"founditUsername"];
+    
+    [defaults registerDefaults:appDefaults2];
     [defaults registerDefaults:appDefaults];
     [defaults synchronize];
     

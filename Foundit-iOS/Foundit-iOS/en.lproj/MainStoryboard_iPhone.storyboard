@@ -265,7 +265,7 @@
                     <connections>
                         <segue destination="ZwO-Ol-D0z" kind="relationship" relationship="viewControllers" id="26"/>
                         <segue destination="Ray-bU-8uc" kind="relationship" relationship="viewControllers" id="27"/>
-                        <segue destination="Xbi-ca-J3t" kind="relationship" relationship="viewControllers" id="Bfg-0l-A2a"/>
+                        <segue destination="8ui-eV-GgC" kind="relationship" relationship="viewControllers" id="2dZ-7q-QWw"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
@@ -277,22 +277,22 @@
             <objects>
                 <viewController title="Third" id="Xbi-ca-J3t" customClass="ThirdViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oKk-3M-LQv">
-                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="we are" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="GLv-YI-w8h">
-                                <rect key="frame" x="20" y="71" width="280" height="43"/>
+                                <rect key="frame" x="23" y="83" width="280" height="43"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" bouncesZoom="NO" editable="NO" text="Awesome people who want to help you find your lost stuff" textAlignment="center" id="egI-oh-6sQ">
-                                <rect key="frame" x="20" y="190" width="280" height="88"/>
+                                <rect key="frame" x="23" y="220" width="280" height="88"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
                             <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" bouncesZoom="NO" editable="NO" textAlignment="center" id="2eL-IF-z6W">
-                                <rect key="frame" x="20" y="274" width="280" height="119"/>
+                                <rect key="frame" x="23" y="316" width="280" height="119"/>
                                 <string key="text">CPS630 - Group 1 - 2013
 Shaun Maharaj
 Matthew Martire
@@ -300,23 +300,19 @@ Parnit Pooni</string>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
-                            <navigationBar contentMode="scaleToFill" id="jyT-2Z-hOx">
-                                <rect key="frame" x="0.0" y="1" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="About it" id="SUI-LQ-7fT"/>
-                                </items>
-                            </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="FounditLogo@2x.png" id="t1r-aX-QcS">
-                                <rect key="frame" x="49" y="108" width="221" height="88"/>
+                                <rect key="frame" x="52" y="125" width="221" height="88"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="About it" image="0.0_about_60.png" id="vAH-Oy-Vhu"/>
+                    <tabBarItem key="tabBarItem" title="My Posts" image="0.0_favorites_60.png" id="vAH-Oy-Vhu"/>
+                    <navigationItem key="navigationItem" title="About it" id="Fnq-mG-ZV5"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="45d-fq-EMG" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="201" y="234"/>
+            <point key="canvasLocation" x="1201" y="176"/>
         </scene>
         <!--Second View Controller2-->
         <scene sceneID="Sar-63-7D2">
@@ -326,9 +322,18 @@ Parnit Pooni</string>
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Search" id="VEx-lb-Ltn">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="h0U-zh-Jhz" detailTextLabel="VON-tB-qg5" rowHeight="78" style="IBUITableViewCellStyleSubtitle" id="G3z-El-JG9">
-                                <rect key="frame" x="0.0" y="22" width="320" height="78"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="78"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="77"/>
@@ -377,6 +382,9 @@ Parnit Pooni</string>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="searchBar" destination="VEx-lb-Ltn" id="ehF-d1-hTj"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zCj-v3-SaL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -623,9 +631,111 @@ Parnit Pooni</string>
             </objects>
             <point key="canvasLocation" x="1775" y="-1128"/>
         </scene>
+        <!--User View Controller - My Posts-->
+        <scene sceneID="rS3-YN-Ooe">
+            <objects>
+                <tableViewController id="4bK-qp-Gjl" customClass="UserViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="78" sectionHeaderHeight="22" sectionFooterHeight="22" id="BAE-GB-3KC">
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Search" id="u8U-5I-gfN">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="8MD-V3-ffM" detailTextLabel="yH7-Z2-Wke" rowHeight="78" style="IBUITableViewCellStyleSubtitle" id="Dkt-6c-pHo">
+                                <rect key="frame" x="0.0" y="66" width="320" height="78"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="77"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8MD-V3-ffM">
+                                            <rect key="frame" x="10" y="19" width="38" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yH7-Z2-Wke">
+                                            <rect key="frame" x="10" y="41" width="36" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="tWp-Pq-9Df" kind="push" identifier="ShowPostingDetailsFound2" id="fMu-wC-JTE"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4bK-qp-Gjl" id="rI3-w6-dbz"/>
+                            <outlet property="delegate" destination="4bK-qp-Gjl" id="q53-B8-WK5"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Posts" id="RM6-dg-Yod">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="90u-i8-ZcX">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="5Jr-F9-IWj">
+                                <rect key="frame" x="297" y="12" width="18" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Xbi-ca-J3t" kind="modal" modalTransitionStyle="partialCurl" id="Rtg-RQ-3do"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="searchBar" destination="u8U-5I-gfN" id="Pf3-65-K8H"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7OC-3A-7WO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="702" y="194"/>
+        </scene>
+        <!--Navigation Controller - My Posts-->
+        <scene sceneID="KtP-ab-KRa">
+            <objects>
+                <navigationController id="8ui-eV-GgC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My Posts" image="0.0_favorites_60.png" id="t5C-dZ-7OU"/>
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nGH-8a-flA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4bK-qp-Gjl" kind="relationship" relationship="rootViewController" id="Xhv-gk-sXl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lTi-kx-rqN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="201" y="194"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="0.0_about_60.png" width="26" height="24"/>
+        <image name="0.0_favorites_60.png" width="26" height="24"/>
         <image name="0.0_home_60.png" width="26" height="24"/>
         <image name="0.0_shoppinglist_60.png" width="26" height="24"/>
         <image name="Clouds_only2.png" width="1303" height="858"/>
@@ -697,16 +807,33 @@ Parnit Pooni</string>
         <class className="SecondViewController2" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController2.h"/>
             <relationships>
+                <relationship kind="action" name="searchEnable:"/>
                 <relationship kind="action" name="segmentSwitch:"/>
                 <relationship kind="action" name="segmentValueChanged:"/>
                 <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="postingsFound" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="postingsLost" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="searchEnable" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
             </relationships>
         </class>
         <class className="ThirdViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ThirdViewController.h"/>
+        </class>
+        <class className="UserViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UserViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="searchEnable:"/>
+                <relationship kind="action" name="segmentSwitch:"/>
+                <relationship kind="action" name="segmentValueChanged:"/>
+                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="postingsFound" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="postingsLost" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="searchEnable" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -716,5 +843,6 @@ Parnit Pooni</string>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="NJe-FC-Kdt"/>
+        <segue reference="fMu-wC-JTE"/>
     </inferredMetricsTieBreakers>
 </document>

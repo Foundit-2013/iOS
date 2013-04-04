@@ -5,12 +5,20 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Username</string>
+			<key>Key</key>
+			<string>founditUsername</string>
+		</dict>
+		<dict>
 			<key>DefaultValue</key>
 			<true/>
 			<key>Key</key>
 			<string>enableDelete</string>
 			<key>Title</key>
-			<string>Enable Delete</string>
+			<string>Enable Global Delete</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>

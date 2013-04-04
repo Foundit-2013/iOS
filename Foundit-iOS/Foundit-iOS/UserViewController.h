@@ -1,5 +1,5 @@
 //
-//  SecondViewController2.h
+//  UserViewController.h
 //  Foundit-iOS
 //
 //  Created by Shaun Maharaj on 2013-03-16.
@@ -10,9 +10,10 @@
 
 @class PostingDetailViewController2;
 
-@interface SecondViewController2 : UITableViewController {
+@interface UserViewController : UITableViewController {
     
     IBOutlet UITableView *myTableView;
+    NSIndexPath *lastIndexPath;
     
 }
 
@@ -38,6 +39,7 @@
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, assign) bool isFiltered;
+@property (nonatomic, assign) bool deleteYes;
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *searchEnable;
 - (IBAction)searchEnable:(id)sender;

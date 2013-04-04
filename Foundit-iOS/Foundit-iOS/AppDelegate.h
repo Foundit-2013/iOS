@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 double locationLatitudeGlobal;
 double locationLongitudeGlobal;
+NSString *founditUsername;
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
 
 }

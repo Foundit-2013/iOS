@@ -1,22 +1,23 @@
 //
-//  SecondViewController2.m
+//  UserViewController.m
 //  Foundit-iOS
 //
 //  Created by Shaun Maharaj on 2013-03-16.
 //  Copyright (c) 2013 Shaun Maharaj. All rights reserved.
 //
 
-#import "SecondViewController2.h"
+#import "UserViewController.h"
 #import "PostingDetailViewController2.h"
 #import "JSONModelLib.h"
 #import "HUD.h"
+#import "AppDelegate.h"
 #import "SystemConfiguration/SystemConfiguration.h"
 
-@interface SecondViewController2 ()
+@interface UserViewController ()
 
 @end
 
-@implementation SecondViewController2
+@implementation UserViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -50,10 +51,13 @@
     [super viewDidLoad];
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"UIBackground.png"]];
     
-    _postingsUrl = [NSURL URLWithString:@"http://foundit.andrewl.ca/postings_show_found.json"];
+    NSString * userStrRR = [NSString stringWithFormat:@"http://foundit.andrewl.ca/username/%@", founditUsername];
+    _postingsUrl = [NSURL URLWithString: userStrRR];
+    
+    self.navigationController.navigationBar.topItem.title = founditUsername;
     
     _viewPreviouslyLoaded = YES;
-
+    
     _searchBar.delegate = (id)self;
     
     if (_viewPreviouslyLoaded != NO) {
@@ -80,7 +84,7 @@
         
         for (int i=0; i< self.json.count; i++) {
             self.postings = [self.json objectAtIndex: i];
-
+            
             NSRange nameRange = [[self.postings objectForKey:@"name"] rangeOfString:text options:NSCaseInsensitiveSearch];
             if(nameRange.location != NSNotFound)
             {
@@ -131,7 +135,7 @@
     @catch (NSException *ex){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect to Server :(" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
-//        [alert show];
+        //        [alert show];
     }
 }
 
@@ -144,7 +148,7 @@
     _isFiltered = FALSE;
 	_searchBar.text = nil;
 	[_searchBar resignFirstResponder];
-//    [self.tableView reloadData];
+    //    [self.tableView reloadData];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -156,28 +160,34 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     if ([self isConnectionAvailable] == TRUE){
-        if (_viewPreviouslyLoaded != NO) {
-            UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-            
-            [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
-            
-            self.refreshControl = refreshControl;
-            
-            [self fetchJSONfromServer:_postingsUrl];
-            
-            _viewPreviouslyLoaded = NO;
-            
-            [myTableView reloadData];
-//            [self.tableView reloadData];
+        if ([founditUsername length] == 0) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please set Username in Settings" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
         }
-        else {}
+        else {
+            if (_viewPreviouslyLoaded != NO) {
+                UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+                
+                [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+                
+                self.refreshControl = refreshControl;
+                
+                [self fetchJSONfromServer:_postingsUrl];
+                
+                _viewPreviouslyLoaded = NO;
+                
+                [myTableView reloadData];
+                //            [self.tableView reloadData];
+            }
+            else {}
+        }
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect. Please check your internet Connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
     [HUD hideUIBlockingIndicator];
-
+    
 }
 
 - (UIViewController *)viewControllerForSegmentIndex:(NSInteger)index {
@@ -205,7 +215,7 @@
     
     return rowCount;
     
-//    return self.json.count;
+    //    return self.json.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -255,8 +265,8 @@
         }
     }
     
-//    self.postings = [self.json objectAtIndex: indexPath.row];
-
+    //    self.postings = [self.json objectAtIndex: indexPath.row];
+    
     UIGraphicsEndImageContext();
     
     //    cell.imageView.image = [self.images_downloaded objectAtIndex: indexPath.row];
@@ -283,58 +293,58 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (IBAction)segmentValueChanged:(id)sender {
-    
-    if ([self isConnectionAvailable] == TRUE){
-        
-        UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:keyWindow animated:YES];
-//        hud.labelText = @"Loading...";
-//        [self.view.window addSubview:hud];
-        
-        UISegmentedControl *seg = sender;
-        if (seg.selectedSegmentIndex == 0) {
-            [UIView beginAnimations:nil context:nil];
-            [UIView setAnimationDuration:0.5];
-            [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.tableView cache:NO];
-            [UIView commitAnimations];
-            
-            self.json = @[];
-            _postingsUrl = [NSURL URLWithString:@"http://foundit.andrewl.ca/postings_show_found.json"];
-//            [hud showWhileExecuting:@selector(fetchJSONfromServer:) onTarget:self withObject:_postingsUrl animated:YES];
+//- (IBAction)segmentValueChanged:(id)sender {
+//    
+//    if ([self isConnectionAvailable] == TRUE){
+//        
+//        UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+//        //        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:keyWindow animated:YES];
+//        //        hud.labelText = @"Loading...";
+//        //        [self.view.window addSubview:hud];
+//        
+//        UISegmentedControl *seg = sender;
+//        if (seg.selectedSegmentIndex == 0) {
+//            [UIView beginAnimations:nil context:nil];
+//            [UIView setAnimationDuration:0.5];
+//            [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.tableView cache:NO];
+//            [UIView commitAnimations];
+//            
+//            self.json = @[];
+//            _postingsUrl = [NSURL URLWithString:@"http://foundit.andrewl.ca/postings_show_found.json"];
+//            //            [hud showWhileExecuting:@selector(fetchJSONfromServer:) onTarget:self withObject:_postingsUrl animated:YES];
+//            //            [self performSelectorInBackground:@selector(fetchJSONfromServer:) withObject:_postingsUrl];
 //            [self performSelectorInBackground:@selector(fetchJSONfromServer:) withObject:_postingsUrl];
-            [self performSelectorInBackground:@selector(fetchJSONfromServer:) withObject:_postingsUrl];
-//            [self fetchJSONfromServer:_postingsUrl];
-            
-            [myTableView reloadData];
-            [self.tableView reloadData];
-            [HUD showUIBlockingIndicatorWithText:@"Loading..."];
-//            [hud hide:YES];
-        }
-        else if (seg.selectedSegmentIndex == 1) {
-            [UIView beginAnimations:nil context:nil];
-            [UIView setAnimationDuration:0.5];
-            [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.tableView cache:NO];
-            [UIView commitAnimations];
-            
-            self.json = @[];
-            _postingsUrl = [NSURL URLWithString:@"http://foundit.andrewl.ca/postings_show_lost.json"];
-//            [hud showWhileExecuting:@selector(fetchJSONfromServer:) onTarget:self withObject:_postingsUrl animated:YES];
+//            //            [self fetchJSONfromServer:_postingsUrl];
+//            
+//            [myTableView reloadData];
+//            [self.tableView reloadData];
+//            [HUD showUIBlockingIndicatorWithText:@"Loading..."];
+//            //            [hud hide:YES];
+//        }
+//        else if (seg.selectedSegmentIndex == 1) {
+//            [UIView beginAnimations:nil context:nil];
+//            [UIView setAnimationDuration:0.5];
+//            [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.tableView cache:NO];
+//            [UIView commitAnimations];
+//            
+//            self.json = @[];
+//            _postingsUrl = [NSURL URLWithString:@"http://foundit.andrewl.ca/postings_show_lost.json"];
+//            //            [hud showWhileExecuting:@selector(fetchJSONfromServer:) onTarget:self withObject:_postingsUrl animated:YES];
+//            //            [self performSelectorInBackground:@selector(fetchJSONfromServer:) withObject:_postingsUrl];
 //            [self performSelectorInBackground:@selector(fetchJSONfromServer:) withObject:_postingsUrl];
-            [self performSelectorInBackground:@selector(fetchJSONfromServer:) withObject:_postingsUrl];
-//            [self fetchJSONfromServer:_postingsUrl];
-            
-            [myTableView reloadData];
-            [self.tableView reloadData];
-            [HUD showUIBlockingIndicatorWithText:@"Loading..."];
-//            [hud hide:YES];
-        }
-    }
-    else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect. Please check your internet Connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-    }
-}
+//            //            [self fetchJSONfromServer:_postingsUrl];
+//            
+//            [myTableView reloadData];
+//            [self.tableView reloadData];
+//            [HUD showUIBlockingIndicatorWithText:@"Loading..."];
+//            //            [hud hide:YES];
+//        }
+//    }
+//    else {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Can't connect. Please check your internet Connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [alert show];
+//    }
+//}
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     if ([self isConnectionAvailable] == TRUE){
@@ -349,21 +359,21 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"ShowPostingDetailsFound"]) {
+    if ([[segue identifier] isEqualToString:@"ShowPostingDetailsFound2"]) {
         [HUD showUIBlockingIndicatorWithText:@"Loading..."];
         
         if(self.isFiltered)
         {
             self.postings = [self.filteredTableData objectAtIndex: _indexPathSend];
-//            food = [filteredTableData objectAtIndex:indexPath.row];
+            //            food = [filteredTableData objectAtIndex:indexPath.row];
         }
         else
         {
             self.postings = [self.json objectAtIndex: _indexPathSend];
-//            food = [allTableData objectAtIndex:indexPath.row];
+            //            food = [allTableData objectAtIndex:indexPath.row];
         }
         
-//        self.postings = [self.json objectAtIndex: _indexPathSend];
+        //        self.postings = [self.json objectAtIndex: _indexPathSend];
         
         NSArray *json = @[[self.postings objectForKey:@"name"],[self.postings objectForKey:@"posting_type"],[self.postings objectForKey:@"created_at_formatted"],[self.postings objectForKey:@"description"],[self.postings objectForKey:@"photo_url_large"],[self.postings objectForKey:@"latitude"],[self.postings objectForKey:@"longitude"]];
         PostingDetailViewController2 *vc = [segue destinationViewController];
@@ -374,16 +384,16 @@
 
 - (void)refreshTable
 {
-//    [HUD showUIBlockingIndicatorWithText:@"Loading..."];
+    //    [HUD showUIBlockingIndicatorWithText:@"Loading..."];
     [self performSelectorInBackground:@selector(fetchJSONfromServer:) withObject:_postingsUrl];
-//    [self.tableView reloadData];
-//    [self.refreshControl endRefreshing];
-//    [HUD hideUIBlockingIndicator];
+    //    [self.tableView reloadData];
+    //    [self.refreshControl endRefreshing];
+    //    [HUD hideUIBlockingIndicator];
 }
 
 - (void)refreshTableView
 {
-//    [HUD showUIBlockingIndicatorWithText:@"Loading..."];
+    //    [HUD showUIBlockingIndicatorWithText:@"Loading..."];
     [myTableView reloadData];
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     [HUD hideUIBlockingIndicator];
@@ -391,19 +401,36 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    BOOL enabled = [defaults boolForKey:@"enableDelete"];
-    
-    if (enabled) {
-        return YES;
-    } else {
-        return NO;
-    }
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    BOOL enabled = [defaults boolForKey:@"enableDelete"];
+//    
+//    if (enabled) {
+//        return YES;
+//    } else {
+//        return NO;
+//    }
+
+    return YES;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        self.postings = [self.json objectAtIndex: indexPath.row];
+        
+        [self showAlert];
+        lastIndexPath = indexPath;
+    }
+}
+
+- (void)showAlert {
+    UIAlertView *deleteAlert = [[UIAlertView alloc] initWithTitle: @"Post Deletion" message: @"Do you really want to delete?" delegate: self cancelButtonTitle: @"Yes"  otherButtonTitles:@"No",nil];
+    [deleteAlert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex==0)
+    {
+        self.postings = [self.json objectAtIndex: lastIndexPath.row];
         
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         
@@ -414,7 +441,10 @@
         NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
         
         [self performSelectorInBackground:@selector(fetchJSONfromServer:) withObject:_postingsUrl];
-//        [self performSelectorOnMainThread:@selector(refreshTableView) withObject:nil waitUntilDone:NO];
+        //        [self performSelectorOnMainThread:@selector(refreshTableView) withObject:nil waitUntilDone:NO];
     }
+    else {
+    }
+    
 }
 @end
