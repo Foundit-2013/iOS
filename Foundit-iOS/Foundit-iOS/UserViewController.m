@@ -428,7 +428,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    NSString *title = alertView.title;
     if([title isEqualToString:@"Post Deletion"] && buttonIndex==0)
     {
         self.postings = [self.json objectAtIndex: lastIndexPath.row];
