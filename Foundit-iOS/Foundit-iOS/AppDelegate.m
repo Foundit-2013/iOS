@@ -25,10 +25,14 @@
     // Set the application defaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
+//    if ([[defaults objectForKey:@"founditUsername"] length] == 0)
+//        [defaults setBool:NO forKey:@"firstRun"];
+    
     founditUsername = [defaults valueForKey:@"founditUsername"];
     
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES" forKey:@"enableDelete"];
     NSDictionary *appDefaults2 = [NSDictionary dictionaryWithObject:@"" forKey:@"founditUsername"];
+    
     
     [defaults registerDefaults:appDefaults2];
     [defaults registerDefaults:appDefaults];

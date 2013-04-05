@@ -22,6 +22,34 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
+//    NSUUID  *uuid = [NSUUID UUID];
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    BOOL isFirst = [defaults boolForKey:@"firstRun"];
+//    if(isFirst == NO)
+//    {
+//        [defaults setBool:YES forKey:@"firstRun"];
+//        NSLog(@"UUID: %@", [uuid UUIDString]);
+//        
+//        UIAlertView *alert = [[UIAlertView alloc]
+//                              initWithTitle:@"Welcome to Foundit"
+//                              message:@"Please Enter a Username"
+//                              delegate:self
+//                              cancelButtonTitle: nil
+//                              otherButtonTitles:@"Continue", nil ];
+//        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+//        username = [alert textFieldAtIndex:0];
+//        
+//        [alert show];
+//    }
+//    
+//    NSString *valueToSave = [uuid UUIDString];
+//    [[NSUserDefaults standardUserDefaults] setObject:valueToSave forKey:@"userIDValueString"];
+//    
+//    
+//    NSString *savedValue = [[NSUserDefaults standardUserDefaults] stringForKey:@"userIDValueString"];
+//    NSLog(@"UUID: %@", savedValue);
+
+    
     UIImage *defaultImage = [UIImage imageNamed:@"/Default.png"];
     _coverImageView = [[UIImageView alloc] initWithImage:defaultImage];
     [self.view addSubview:_coverImageView];
@@ -51,6 +79,19 @@
     
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"UIBackground.png"]];
 }
+
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+//    if([title isEqualToString:@"Continue"])
+//    {
+//        NSString *userFieldString = username.text;
+//        [[NSUserDefaults standardUserDefaults] setObject:userFieldString forKey:@"founditUsername"];
+//    }
+//    else {
+//    }
+//    
+//}
 
 - (void)viewWillAppear:(BOOL)animated
 {

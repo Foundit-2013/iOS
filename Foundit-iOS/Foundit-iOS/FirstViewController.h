@@ -13,6 +13,7 @@
     bool lostWasClicked;
     
     UIImageView *coverImageView;
+    UITextField* username;
 }
 @property (strong, nonatomic) IBOutlet UIImageView *cloudsImage;
 @property (nonatomic, retain) UIImageView *coverImageView;
